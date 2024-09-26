@@ -11,8 +11,6 @@ The primary dataset used for this project is sourced from Kaggle. It contains de
 - Ratings
 - User reviews
 
-You can find the dataset [here](https://www.kaggle.com/datasets).
-
 ## Model Development
 The movie recommender model is built using the following key steps:
 
