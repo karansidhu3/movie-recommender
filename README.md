@@ -3,6 +3,9 @@
 ## Project Overview
 This project is a movie recommender system that leverages datasets from Kaggle to provide users with personalized movie recommendations. The system compares movies based on various features using vectorization techniques to calculate similarity scores.
 
+## Watch a Video Demo
+[Link to Video](https://drive.google.com/file/d/1HTMM0eCaiTxITesThqSLoztfLbClbaSC/view?usp=sharing)
+
 ## Datasets
 The primary dataset used for this project is sourced from Kaggle. It contains detailed information about a wide range of movies, including:
 - Movie titles
