@@ -11,6 +11,9 @@ The primary dataset used for this project is sourced from Kaggle. It contains de
 - Ratings
 - User reviews
 
+## Jupyter Notebook
+You can view the dataset creation process and model implementation in the Jupyter Notebook [here](https://colab.research.google.com/drive/183WfxkVTU_ApXawNJKUYRU1xoE-6Ump3).
+
 ## Model Development
 The movie recommender model is built using the following key steps:
 
