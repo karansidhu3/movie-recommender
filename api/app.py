@@ -18,9 +18,16 @@ def fetch_poster(movie_id):
     data = response.json()
     return "http://image.tmdb.org/t/p/w500/" + data.get('poster_path', '')
 
-# Recommender function
+# Recommender function with case-insensitive search
 def recommend(movie):
-    movie_index = movies[movies['title'] == movie].index[0]
+    movie = movie.lower()  # Convert user input to lowercase
+    movies['lower_title'] = movies['title'].str.lower()  # Add a lowercase version of the movie titles
+
+    # Check if the movie is in the dataset (case-insensitive)
+    if movie not in movies['lower_title'].values:
+        return None
+    
+    movie_index = movies[movies['lower_title'] == movie].index[0]
     distances = similarity[movie_index]
     movies_numbered_with_distance = list(enumerate(distances))
     sorted_dists = sorted(movies_numbered_with_distance, reverse=True, key=lambda x: x[1])
@@ -39,7 +46,12 @@ def recommend(movie):
 def recommend_movies():
     data = request.get_json()
     movie_name = data['movie']
+    
     recommendations = recommend(movie_name)
+    
+    if recommendations is None:
+        return jsonify({'error': 'Movie not found'}), 404  # Return an error if movie not found
+    
     return jsonify(recommendations)
 
 if __name__ == '__main__':

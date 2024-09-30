@@ -2,8 +2,8 @@
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  background-color: #f5f5f7; /* Light background */
-  color: #333;
+  background-color: #141414; /* Netflix dark background */
+  color: #fff; /* White text */
 }
 
 /* App Container */
@@ -14,21 +14,20 @@ body {
 
 /* Header Styles */
 .App-header {
-  background: linear-gradient(135deg, #f0f0f5, #d9d9e1);
-  padding: 40px;
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px;
+  background-color: #181818;
+  padding: 20px;
+  border-bottom: 2px solid #333;
+  margin-bottom: 30px;
 }
 
 h1 {
-  font-size: 2.5rem;
-  color: #333;
+  font-size: 3rem;
+  color: #e50914; /* Netflix Red */
 }
 
 p {
   font-size: 1.2rem;
-  color: #666;
+  color: #b3b3b3; /* Light gray text */
 }
 
 /* Search Bar */
@@ -39,85 +38,106 @@ p {
 }
 
 input {
-  padding: 10px;
+  padding: 12px;
   font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 20px;
-  width: 300px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border: 1px solid #333;
+  border-radius: 30px;
+  width: 350px;
+  background-color: #333;
+  color: #fff;
   transition: border-color 0.3s ease;
 }
 
 input:focus {
   outline: none;
-  border-color: #007aff; /* Apple blue */
+  border-color: #e50914; /* Netflix Red border on focus */
 }
 
 button {
-  padding: 10px 20px;
+  padding: 12px 24px;
   margin-left: 10px;
   font-size: 1rem;
   color: white;
-  background-color: #007aff; /* Apple blue */
+  background-color: #e50914; /* Netflix Red */
   border: none;
-  border-radius: 20px;
+  border-radius: 30px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s;
 }
 
 button:disabled {
-  background-color: #ccc; /* Light gray when disabled */
+  background-color: #555; /* Darker gray when disabled */
   cursor: not-allowed;
 }
 
 button:hover:not(:disabled) {
-  background-color: #005bb5; /* Darker blue on hover */
-  transform: translateY(-2px); /* Slight lift effect */
+  background-color: #f40612; /* Brighter red on hover */
+  transform: translateY(-3px); /* Slight lift effect */
 }
 
+/* Recommendations Styles */
 /* Recommendations Styles */
 .recommendations {
   margin-top: 20px;
   display: flex;
   flex-direction: column;
-  align-items: center; /* Center the recommendations section */
+  align-items: center; /* Centering the recommendations section */
 }
 
+.recommendations h2 {
+  margin-left: 0; /* Adjusting the margin for the heading */
+  font-size: 2rem;
+  color: #fff;
+}
+
+/* Horizontal scroll grid */
 .movies-grid {
-  display: flex; /* Use flexbox for horizontal layout */
-  justify-content: center; /* Center the grid */
-  gap: 15px; /* Space between movie cards */
-  max-width: 800px; /* Optional: Limit the width of the grid */
-  width: 100%; /* Full width */
+  display: flex;
+  overflow-x: auto; /* Enable horizontal scrolling */
+  gap: 20px; /* Space between movie cards */
+  padding: 20px;
+  scroll-behavior: smooth;
+  justify-content: center; /* Center the content horizontally */
 }
 
 .movie-card {
-  background: white;
-  border-radius: 15px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  overflow: hidden; /* Ensure rounded corners are applied */
-  transition: transform 0.2s ease;
-  width: 150px; /* Set a fixed width for each movie card */
+  background: #181818; /* Dark card background */
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  min-width: 180px; /* Wider cards */
+  max-width: 180px;
 }
 
+
 .movie-card:hover {
-  transform: scale(1.05); /* Scale effect on hover */
+  transform: scale(1.08); /* Slightly larger on hover */
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
 }
 
 .movie-card img {
   width: 100%;
-  border-bottom: 2px solid #007aff; /* Blue line under the poster */
+  border-bottom: 2px solid #e50914; /* Red underline below the poster */
 }
 
 .movie-card p {
   padding: 10px;
   font-weight: bold;
-  color: #333;
+  color: #fff;
+  text-align: center;
 }
 
 /* Error Message Styles */
 .error-message {
-  color: red;
+  color: #e50914; /* Netflix Red */
   margin-top: 10px;
   font-size: 1rem;
+}
+
+/* Loading Message Styles */
+.loading-message {
+  color: #fff;
+  font-size: 1.2rem;
+  margin-top: 20px;
 }
