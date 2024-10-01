@@ -6,17 +6,30 @@ function App() {
   const [selectedMovie, setSelectedMovie] = useState('');
   const [recommendations, setRecommendations] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');  // State to handle error message
 
   // Fetch recommendations from the backend
   const getRecommendations = async () => {
     setLoading(true);
+    setErrorMessage('');  // Clear any previous errors
     try {
       const response = await axios.post('http://localhost:5000/recommend', { movie: selectedMovie });
       setRecommendations(response.data);
     } catch (error) {
-      console.error('Error fetching recommendations:', error);
+      if (error.response && error.response.status === 404) {
+        setErrorMessage('Movie not found in the dataset. Please try another movie.');
+      } else {
+        setErrorMessage('Error fetching recommendations. Please try again later.');
+      }
     }
     setLoading(false);
+  };
+
+  // Handle Enter key press to trigger the recommendation query
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter' && selectedMovie) {
+      getRecommendations();
+    }
   };
 
   return (
@@ -31,6 +44,7 @@ function App() {
           type="text"
           value={selectedMovie}
           onChange={(e) => setSelectedMovie(e.target.value)}
+          onKeyDown={handleKeyPress}
           placeholder="Enter a movie name..."
         />
         <button onClick={getRecommendations} disabled={!selectedMovie || loading}>
@@ -38,7 +52,16 @@ function App() {
         </button>
       </div>
 
-      {recommendations.length > 0 && (
+      {/* Display loading indicator while fetching recommendations */}
+      {loading && <div className="loading-message">Fetching recommendations...</div>}
+
+      {errorMessage && (
+        <div className="error-message">
+          <p>{errorMessage}</p>
+        </div>
+      )}
+
+      {recommendations.length > 0 && !errorMessage && (
         <div className="recommendations">
           <h2>Recommended Movies:</h2>
           <div className="movies-grid">
